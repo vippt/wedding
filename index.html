@@ -54,10 +54,10 @@
         body { font-family: 'Poppins', sans-serif; color: #4A3933; }
         .heart-bg { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-5-8-18-6-18 6 0 8 18 24 18 24s18-16 18-24c0-12-13-14-18-6z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E"); }
         .album-modal { transition: opacity 0.3s ease; }
+        .wish-card { animation: fadeIn 0.5s ease-out forwards; }
     </style>
 </head>
 <body class="bg-rose-50 heart-bg">
-
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-rose-100 to-rose-50">
         <div class="text-center px-6 py-20 animate-fade-in">
@@ -95,7 +95,7 @@
         </div>
     </section>
 
-    <!-- ✅ PHẦN MỚI: GIỚI THIỆU CÔ DÂU & CHÚ RỂ -->
+    <!-- Giới Thiệu Cô Dâu & Chú Rể -->
     <section id="about" class="py-20 px-6 bg-white">
         <div class="max-w-5xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-12">Chúng Tôi Là Ai 💑</h2>
@@ -112,7 +112,6 @@
                     <p class="text-dark/60 italic mb-3">💍 Cô Dâu</p>
                     <p class="text-dark/80 leading-relaxed px-4">
                         Thích Xem Phim, Ăn Uống, Du Lịch, Nấu Ăn Và Chăm Sóc Gia Đình
-                       
                     </p>
                 </div>
                 
@@ -126,7 +125,7 @@
                     <h3 class="font-script text-3xl text-primary mb-2">Lê Phi Phi</h3>
                     <p class="text-dark/60 italic mb-3">🤵 Chú Rể</p>
                     <p class="text-dark/80 leading-relaxed px-4">
-                       Kỹ sư, yêu thể thao, âm nhạc và luôn quan tâm người thân.
+                        Kỹ sư, yêu thể thao, âm nhạc và luôn quan tâm người thân.
                     </p>
                 </div>
             </div>
@@ -153,7 +152,7 @@
                         <p class="text-dark/60 text-sm">18/08/2018</p>
                     </div>
                     <div class="md:w-2/3">
-                        <p class="text-dark/80 italic">"Cùng làm chung một công ty và ánh mắt của chúng tôi đã var vào nhau ^^"</p>
+                        <p class="text-dark/80 italic">"Cùng làm chung một công ty và ánh mắt của chúng tôi đã va vào nhau ^^"</p>
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-6">
@@ -178,43 +177,34 @@
         </div>
     </section>
 
-    <!-- ✅ PHẦN MỚI: ALBUM ẢNH CƯỚI -->
+    <!-- Album Ảnh Cưới -->
     <section id="album" class="py-20 px-6 bg-white">
         <div class="max-w-6xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-4">Album Ảnh Cưới 📸</h2>
             <p class="text-center text-dark/60 mb-12">Những khoảnh khắc đẹp nhất của chúng tôi</p>
             
-            <!-- Lưới ảnh -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                <!-- Ảnh 1 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(0)">
                     <img src="/anh/1.jpg" alt="Ảnh cưới 1" class="w-full h-48 md:h-56 object-cover">
                 </div>
-                <!-- Ảnh 2 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(1)">
                     <img src="/anh/2.jpg" alt="Ảnh cưới 2" class="w-full h-48 md:h-56 object-cover">
                 </div>
-                <!-- Ảnh 3 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(2)">
                     <img src="/anh/3.jpg" alt="Ảnh cưới 3" class="w-full h-48 md:h-56 object-cover">
                 </div>
-                <!-- Ảnh 4 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(3)">
                     <img src="/anh/4.jpg" alt="Ảnh cưới 4" class="w-full h-48 md:h-56 object-cover">
                 </div>
-                <!-- Ảnh 5 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(4)">
                     <img src="/anh/5.jpg" alt="Ảnh cưới 5" class="w-full h-48 md:h-56 object-cover">
                 </div>
-                <!-- Ảnh 6 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(5)">
                     <img src="/anh/6.jpg" alt="Ảnh cưới 6" class="w-full h-48 md:h-56 object-cover">
                 </div>
-                <!-- Ảnh 7 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(6)">
                     <img src="/anh/7.jpg" alt="Ảnh cưới 7" class="w-full h-48 md:h-56 object-cover">
                 </div>
-                <!-- Ảnh 8 -->
                 <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(7)">
                     <img src="/anh/8.jpg" alt="Ảnh cưới 8" class="w-full h-48 md:h-56 object-cover">
                 </div>
@@ -240,13 +230,12 @@
         </button>
     </div>
 
-    <!-- Chi Tiết Sự Kiện -->
+    <!-- Thông Tin Lễ Cưới -->
     <section id="details" class="py-20 px-6">
         <div class="max-w-5xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-12">Thông Tin Lễ Cưới</h2>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Lễ Tân Hôn -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition">
                     <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fa fa-heart text-primary text-xl"></i>
@@ -260,7 +249,6 @@
                     </a>
                 </div>
                 
-                <!-- Tiệc Cưới -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition">
                     <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fa fa-glass text-primary text-xl"></i>
@@ -277,8 +265,45 @@
         </div>
     </section>
 
+    <!-- ✅ PHẦN MỚI: LỜI CHÚC PHÚC -->
+    <section id="wishes" class="py-20 px-6 bg-rose-50">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="font-script text-4xl text-center text-primary mb-4">Lời Chúc Phúc 💌</h2>
+            <p class="text-center text-dark/60 mb-10">Gửi lời chúc tốt đẹp của bạn đến cặp đôi</p>
+            
+            <!-- Form Gửi Lời Chúc -->
+            <form id="wishForm" class="bg-white rounded-2xl shadow-lg p-8 mb-12 space-y-4">
+                <div>
+                    <input type="text" id="wishName" placeholder="Tên của bạn *" required
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <textarea id="wishMessage" placeholder="Lời chúc phúc của bạn *" rows="3" required
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50"></textarea>
+                </div>
+                <button type="submit" 
+                    class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-accent transition">
+                    Gửi Lời Chúc 💝
+                </button>
+                <p id="wishStatus" class="text-center text-sm hidden"></p>
+            </form>
+            
+            <!-- Danh Sách Lời Chúc -->
+            <div>
+                <h3 class="font-serif text-xl text-center mb-6">
+                    <i class="fa fa-comments text-primary mr-2"></i>
+                    Lời chúc từ mọi người 💝
+                </h3>
+                <div id="wishesList" class="space-y-4">
+                    <!-- Lời chúc sẽ hiển thị ở đây -->
+                    <p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên gửi lời chúc! ✨</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Thư Mời & RSVP -->
-    <section class="py-20 px-6 bg-rose-50">
+    <section class="py-20 px-6 bg-white">
         <div class="max-w-2xl mx-auto text-center">
             <h2 class="font-script text-4xl text-primary mb-6">Thư Mời</h2>
             <p class="text-lg mb-10 leading-relaxed">
@@ -287,7 +312,7 @@
             </p>
             
             <h3 class="font-serif text-xl mb-6">Xác Nhận Tham Dự</h3>
-            <form id="rsvpForm" class="bg-white rounded-2xl shadow-lg p-8 space-y-4 text-left">
+            <form id="rsvpForm" class="bg-rose-50 rounded-2xl shadow-lg p-8 space-y-4 text-left">
                 <div>
                     <input type="text" placeholder="Họ và tên của bạn *" required
                         class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
@@ -327,7 +352,8 @@
     <!-- JavaScript -->
     <script>
         // === Đếm ngược thời gian ===
-        const weddingDate = new Date(2021, 01, 01, 12, 0, 0); // Thay ngày cưới của bạn
+        // Lưu ý: Tháng viết từ 0=Tháng 1, nên 01/01/2021 = tháng 0
+        const weddingDate = new Date(2021, 0, 1, 12, 0, 0);
 
         function updateCountdown() {
             const now = new Date();
@@ -355,10 +381,10 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // === Danh sách ảnh Album ===
+        // === Album Ảnh ===
         const albumImages = [
             "/anh/1.jpg",
-            "/anh/2.jpg]",
+            "/anh/2.jpg",
             "/anh/3.jpg",
             "/anh/4.jpg",
             "/anh/5.jpg",
@@ -390,7 +416,6 @@
             document.getElementById('modalImage').src = albumImages[currentIndex];
         }
 
-        // Phím tắt điều hướng ảnh
         document.addEventListener('keydown', function(e) {
             if (!document.getElementById('albumModal').classList.contains('hidden')) {
                 if (e.key === 'Escape') closeModal();
@@ -399,7 +424,107 @@
             }
         });
 
-        // === Xử lý form RSVP ===
+        // === ✅ LỜI CHÚC PHÚC - Kết nối Google Sheets ===
+        // 👇 Bước 1: Sau khi tạo Google Apps Script, dán link của bạn vào đây
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbynT0IN0si-qrs-wzuDncU7ASRYJFLCx7YkKTKkMyu1MbTGq-DU4IFOtDXXYByHYKW6VQ/exec";
+
+        // Tải danh sách lời chúc khi mở trang
+        async function loadWishes() {
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_URL + "?action=read");
+                const data = await res.json();
+                renderWishes(data.wishes || []);
+            } catch (e) {
+                console.log("Chưa có kết nối, hiển thị dữ liệu mẫu");
+            }
+        }
+
+        // Hiển thị danh sách lời chúc
+        function renderWishes(wishes) {
+            const container = document.getElementById('wishesList');
+            if (wishes.length === 0) {
+                container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên gửi lời chúc! ✨</p>';
+                return;
+            }
+            // Sắp xếp mới nhất lên trên
+            wishes.reverse();
+            container.innerHTML = wishes.map(w => `
+                <div class="wish-card bg-white rounded-xl shadow-md p-5 border-l-4 border-primary/70">
+                    <p class="font-semibold text-primary mb-2">${escapeHtml(w.name)}</p>
+                    <p class="text-dark/80">${escapeHtml(w.message)}</p>
+                    <p class="text-xs text-dark/40 mt-2">${formatDate(w.createdAt)}</p>
+                </div>
+            `).join('');
+        }
+
+        // Gửi lời chúc
+        document.getElementById('wishForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('wishName').value.trim();
+            const message = document.getElementById('wishMessage').value.trim();
+            const statusEl = document.getElementById('wishStatus');
+            
+            if (!name || !message) return;
+            
+            statusEl.classList.remove('hidden');
+            statusEl.textContent = "Đang gửi...";
+            statusEl.className = "text-center text-sm text-blue-500";
+            
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({action: 'write', name, message})
+                });
+                
+                statusEl.textContent = "✅ Cảm ơn bạn! Lời chúc đã được gửi.";
+                statusEl.className = "text-center text-sm text-green-600";
+                
+                // Tải lại danh sách
+                setTimeout(loadWishes, 500);
+                
+                // Reset form
+                document.getElementById('wishName').value = '';
+                document.getElementById('wishMessage').value = '';
+                
+                setTimeout(() => statusEl.classList.add('hidden'), 5000);
+            } catch (err) {
+                // Nếu chưa kết nối server, hiển thị tạm thời
+                const tempWishes = JSON.parse(localStorage.getItem('tempWishes') || '[]');
+                tempWishes.push({
+                    name,
+                    message,
+                    createdAt: new Date().toISOString()
+                });
+                localStorage.setItem('tempWishes', JSON.stringify(tempWishes));
+                
+                statusEl.textContent = "✅ Đã gửi (sẽ hiển thị sau khi kết nối server)";
+                statusEl.className = "text-center text-sm text-amber-500";
+                renderWishes(tempWishes);
+                
+                document.getElementById('wishName').value = '';
+                document.getElementById('wishMessage').value = '';
+            }
+        });
+
+        // Hàm hỗ trợ
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function formatDate(isoStr) {
+            if (!isoStr) return '';
+            const d = new Date(isoStr);
+            return d.toLocaleString('vi-VN');
+        }
+
+        // Tải lời chúc khi mở trang
+        loadWishes();
+
+        // === RSVP ===
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             document.getElementById('rsvpMessage').classList.remove('hidden');
