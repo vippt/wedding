@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💍 Thị Thuận & Phi Phi</title>
     
-    <!-- Tailwind CSS & Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Cấu hình Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -69,23 +66,19 @@
             </h1>
             <p class="text-xl md:text-2xl font-light mb-8">Ngày 01/01/2021 — 11 Giờ tại TTC Phan Thiết</p>
             
-            <!-- Đếm ngược -->
+            <!-- === Đã SỬA: Đếm từ ngày cưới đến nay === -->
             <div id="countdown" class="flex justify-center gap-3 md:gap-6 mb-10 animate-fade-delay">
                 <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
                     <div id="days" class="text-2xl md:text-3xl font-bold text-primary">00</div>
-                    <div class="text-xs md:text-sm text-dark/60">Ngày</div>
+                    <div class="text-xs md:text-sm text-dark/60">Ngày bên nhau</div>
+                </div>
+                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
+                    <div id="years" class="text-2xl md:text-3xl font-bold text-primary">00</div>
+                    <div class="text-xs md:text-sm text-dark/60">Năm hạnh phúc</div>
                 </div>
                 <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
                     <div id="hours" class="text-2xl md:text-3xl font-bold text-primary">00</div>
-                    <div class="text-xs md:text-sm text-dark/60">Giờ</div>
-                </div>
-                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
-                    <div id="minutes" class="text-2xl md:text-3xl font-bold text-primary">00</div>
-                    <div class="text-xs md:text-sm text-dark/60">Phút</div>
-                </div>
-                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
-                    <div id="seconds" class="text-2xl md:text-3xl font-bold text-primary">00</div>
-                    <div class="text-xs md:text-sm text-dark/60">Giây</div>
+                    <div class="text-xs md:text-sm text-dark/60">Giờ yêu thương</div>
                 </div>
             </div>
             
@@ -265,7 +258,7 @@
         </div>
     </section>
 
-    <!-- ✅ PHẦN MỚI: LỜI CHÚC PHÚC -->
+    <!-- LỜI CHÚC PHÚC -->
     <section id="wishes" class="py-20 px-6 bg-rose-50">
         <div class="max-w-3xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-4">Lời Chúc Phúc 💌</h2>
@@ -295,8 +288,7 @@
                     Lời chúc từ mọi người 💝
                 </h3>
                 <div id="wishesList" class="space-y-4">
-                    <!-- Lời chúc sẽ hiển thị ở đây -->
-                    <p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên gửi lời chúc! ✨</p>
+                    <p class="text-center text-dark/50 py-4">Đang tải lời chúc...</p>
                 </div>
             </div>
         </div>
@@ -307,7 +299,7 @@
         <div class="max-w-2xl mx-auto text-center">
             <h2 class="font-script text-4xl text-primary mb-6">Thư Mời</h2>
             <p class="text-lg mb-10 leading-relaxed">
-                Với niềm hạnh phúc vô bờ, chúng tôi trân trọng mời bạn đến chứng kiến ngày trọng đại. 
+                Với niềm hạnh phúc vô bờ, chúng tôi trân trọng cảm ơn bạn đã cùng chứng kiến ngày trọng đại. 
                 Sự hiện diện của bạn là niềm vinh dự cho chúng tôi! 💐
             </p>
             
@@ -351,35 +343,34 @@
 
     <!-- JavaScript -->
     <script>
-        // === Đếm ngược thời gian ===
-        // Lưu ý: Tháng viết từ 0=Tháng 1, nên 01/01/2021 = tháng 0
-        const weddingDate = new Date(2021, 0, 1, 12, 0, 0);
+        // === ĐÃ SỬA: Đếm từ ngày cưới đến nay ===
+        const weddingDate = new Date(2021, 0, 1, 11, 0, 0); // 01/01/2021 11:00
 
         function updateCountdown() {
             const now = new Date();
-            const diff = weddingDate - now;
+            const diff = now - weddingDate;
             
-            if (diff <= 0) {
+            if (diff < 0) {
                 document.getElementById('days').textContent = '00';
+                document.getElementById('years').textContent = '00';
                 document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
                 return;
             }
             
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            // Tính tổng ngày
+            const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+            // Tính năm tròn
+            const years = now.getFullYear() - weddingDate.getFullYear();
+            // Tính tổng giờ
+            const totalHours = Math.floor(diff / (1000 * 60 * 60));
             
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            document.getElementById('days').textContent = String(totalDays).padStart(2, '0');
+            document.getElementById('years').textContent = String(years).padStart(2, '0');
+            document.getElementById('hours').textContent = String(totalHours).padStart(2, '0');
         }
         
         updateCountdown();
-        setInterval(updateCountdown, 1000);
+        setInterval(updateCountdown, 60000); // Cập nhật mỗi phút
 
         // === Album Ảnh ===
         const albumImages = [
@@ -424,29 +415,28 @@
             }
         });
 
-        // === ✅ LỜI CHÚC PHÚC - Kết nối Google Sheets ===
-        // 👇 Bước 1: Sau khi tạo Google Apps Script, dán link của bạn vào đây
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeIKXSI6ivg-7yzCgetLsoJtowbNHS2-6Q7mXIjTIp1Yl77a2l5EbCToDLdlI1XVNe8g/exec";
+        // === LỜI CHÚC PHÚC — Đã dán link của bạn ===
+        // ⚠️ Nếu có link /exec mới thì thay vào đây nhé
+        const GOOGLE_SCRIPT_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSxY3lhBLWkGg6FPw2UGKrwQe-V2MIrRoefijvTwnz51Q1aNfTc3Cy9EjRzstu-HZdC4wIYTdpXM4Z1G_hDfluw7PjjpcmXR9YbJtDLUK-x449O-qzzIvfZANwy06fBFz-S0rZ92L8R-1vrUD9b2TAiLAtyd44t83Oln9oVd9_08oUfZW5EBxLzHPxkY7wUPo0XqR2RkD1uOZaScXEgQ1ACww78uerpAxHVynMtwf1M90Yl13njTDTlTWSfw0xaypbbiZKlFvf1Xm7QeAiCX86b0a3W8w&lib=MgaP0TohrqvoRsSl8Hp1ZevbaKKeZ8Eba";
 
-        // Tải danh sách lời chúc khi mở trang
         async function loadWishes() {
             try {
                 const res = await fetch(GOOGLE_SCRIPT_URL + "?action=read");
                 const data = await res.json();
                 renderWishes(data.wishes || []);
             } catch (e) {
-                console.log("Chưa có kết nối, hiển thị dữ liệu mẫu");
+                console.log("Lỗi tải lời chúc:", e);
+                document.getElementById('wishesList').innerHTML = 
+                    '<p class="text-center text-amber-600 py-4">Đang kết nối... vui lòng tải lại trang sau.</p>';
             }
         }
 
-        // Hiển thị danh sách lời chúc
         function renderWishes(wishes) {
             const container = document.getElementById('wishesList');
             if (wishes.length === 0) {
                 container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên gửi lời chúc! ✨</p>';
                 return;
             }
-            // Sắp xếp mới nhất lên trên
             wishes.reverse();
             container.innerHTML = wishes.map(w => `
                 <div class="wish-card bg-white rounded-xl shadow-md p-5 border-l-4 border-primary/70">
@@ -457,7 +447,6 @@
             `).join('');
         }
 
-        // Gửi lời chúc
         document.getElementById('wishForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -481,34 +470,18 @@
                 statusEl.textContent = "✅ Cảm ơn bạn! Lời chúc đã được gửi.";
                 statusEl.className = "text-center text-sm text-green-600";
                 
-                // Tải lại danh sách
                 setTimeout(loadWishes, 500);
                 
-                // Reset form
                 document.getElementById('wishName').value = '';
                 document.getElementById('wishMessage').value = '';
                 
                 setTimeout(() => statusEl.classList.add('hidden'), 5000);
             } catch (err) {
-                // Nếu chưa kết nối server, hiển thị tạm thời
-                const tempWishes = JSON.parse(localStorage.getItem('tempWishes') || '[]');
-                tempWishes.push({
-                    name,
-                    message,
-                    createdAt: new Date().toISOString()
-                });
-                localStorage.setItem('tempWishes', JSON.stringify(tempWishes));
-                
-                statusEl.textContent = "✅ Đã gửi (sẽ hiển thị sau khi kết nối server)";
-                statusEl.className = "text-center text-sm text-amber-500";
-                renderWishes(tempWishes);
-                
-                document.getElementById('wishName').value = '';
-                document.getElementById('wishMessage').value = '';
+                statusEl.textContent = "⚠️ Lỗi gửi, vui lòng thử lại sau.";
+                statusEl.className = "text-center text-sm text-red-500";
             }
         });
 
-        // Hàm hỗ trợ
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -521,7 +494,6 @@
             return d.toLocaleString('vi-VN');
         }
 
-        // Tải lời chúc khi mở trang
         loadWishes();
 
         // === RSVP ===
