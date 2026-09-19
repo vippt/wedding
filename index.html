@@ -67,7 +67,7 @@
         }
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; color: #4A3933; }
-        .heart-bg { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-5-8-18-6-18 6 0 8 18 24 18 24s18-16 18-24c0-12-13-14-18-6z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E"); }
+        .heart-bg { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-5-8-18-6-18 6 0 12 18 24 18 24s18-12 18-24c0-12-13-14-18-6z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E"); }
         .album-modal { transition: opacity 0.3s ease; }
         .wish-card { animation: fadeIn 0.5s ease-out forwards; }
     </style>
@@ -238,7 +238,7 @@
     </div>
 
     <!-- Thông Tin Lễ Cưới -->
-    <section id="details" class="py-20 px-6">
+    <section id="details" class="py-20 px-6 bg-rose-50">
         <div class="max-w-5xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-12">Thông Tin Lễ Cưới</h2>
             
@@ -261,7 +261,7 @@
                         <i class="fa fa-glass text-primary text-xl"></i>
                     </div>
                     <h3 class="font-serif text-xl font-semibold mb-3">Lễ Tân Hôn</h3>
-                    <p class="text-dark/70 mb-2">📅 02/01/2021 </p>
+                    <p class="text-dark/70 mb-2">📅 02/01/2021</p>
                     <p class="text-dark/70 mb-2">🕐 12 Giờ</p>
                     <p class="text-dark/70 mb-4">📍 TTC Palace Phan Thiết</p>
                     <a href="https://maps.app.goo.gl/dHYpHewto6Z8gTx76" target="_blank" class="inline-block text-primary hover:underline">
@@ -272,46 +272,43 @@
         </div>
     </section>
 
-    <!-- 📺 VIDEO YOUTUBE — KHUNG TV -->
-    <section id="video" class="py-20 px-6 bg-rose-50">
+    <!-- 📺 VIDEO GOOGLE DRIVE — KHUNG TV TỰ PHÁT -->
+    <section id="video" class="py-20 px-6 bg-white">
         <div class="max-w-4xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-4">Khoảnh Khắc Đặc Biệt 📺</h2>
             <p class="text-center text-dark/60 mb-12">Video kỷ niệm của chúng tôi</p>
             
-            <!-- Khung TV -->
             <div class="flex flex-col items-center">
                 <div class="tv-frame p-4 md:p-6 w-full max-w-3xl">
                     <div class="tv-screen overflow-hidden aspect-video w-full">
-                        <!-- Thay link video YouTube của bạn vào đây -->
-                        <iframe 
-                            id="youtubeVideo"
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/_4ENPi5Ilm0?autoplay=1&mute=1&rel=0&modestbranding=1"
-                            title="Video Kỷ Niệm Cưới"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
+                        <!-- Video từ Google Drive - Tự động phát có âm thanh -->
+                        <video 
+                            id="weddingVideo"
+                            class="w-full h-full object-cover"
+                            autoplay
+                            playsinline
+                            controls
+                            preload="auto">
+                            <source src="https://drive.google.com/uc?export=download&id=1Yca3WbQ6d1Om41RG94F5wTtpYjRha84T" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ phát video.
+                        </video>
                     </div>
                 </div>
-                <!-- Chân TV -->
                 <div class="flex flex-col items-center mt-2">
                     <div class="tv-stand w-24 h-3"></div>
                     <div class="tv-stand w-40 h-2 mt-1 rounded-b-lg"></div>
                 </div>
             </div>
-            
-           
         </div>
     </section>
 
     <!-- LỜI CHÚC PHÚC -->
-    <section id="wishes" class="py-20 px-6 bg-white">
+    <section id="wishes" class="py-20 px-6 bg-rose-50">
         <div class="max-w-3xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-4">Lời Chúc Phúc 💌</h2>
             <p class="text-center text-dark/60 mb-10">Gửi lời chúc tốt đẹp của bạn đến cặp đôi</p>
             
-            <form id="wishForm" class="bg-rose-50 rounded-2xl shadow-lg p-8 mb-12 space-y-4">
+            <form id="wishForm" class="bg-white rounded-2xl shadow-lg p-8 mb-12 space-y-4">
                 <div>
                     <input type="text" id="wishName" placeholder="Tên của bạn *" required
                         class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
@@ -342,14 +339,13 @@
     <!-- Chân trang -->
     <footer class="bg-dark text-white/80 py-10 text-center px-6">
         <p class="font-script text-2xl text-primary mb-4">Đỗ Thị Thuận & Lê Phi Phi</p>
-        <p class="text-sm">Chúng tôi rất mong được gặp bạn! 💍💕</p>
+        <p class="text-sm">Cảm ơn bạn đã cùng chúng tôi lưu giữ khoảnh khắc này! 💍💕</p>
         <p class="text-xs mt-4 opacity-50">&copy; LePhiPhi.Com</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         // === Đếm: Ngày bên nhau + Năm hạnh phúc ===
-        const weddingDate = new Date(2021, 0, 1, 11, 0, 0); // 01/01/2021
+        const weddingDate = new Date(2021, 0, 1, 11, 0, 0);
 
         function updateCountdown() {
             const now = new Date();
@@ -369,18 +365,12 @@
         }
         
         updateCountdown();
-        setInterval(updateCountdown, 3600000); // Cập nhật mỗi giờ
+        setInterval(updateCountdown, 3600000);
 
         // === Album Ảnh ===
         const albumImages = [
-            "/anh/1.jpg",
-            "/anh/2.jpg",
-            "/anh/3.jpg",
-            "/anh/4.jpg",
-            "/anh/5.jpg",
-            "/anh/6.jpg",
-            "/anh/7.jpg",
-            "/anh/8.jpg"
+            "/anh/1.jpg", "/anh/2.jpg", "/anh/3.jpg", "/anh/4.jpg",
+            "/anh/5.jpg", "/anh/6.jpg", "/anh/7.jpg", "/anh/8.jpg"
         ];
         let currentIndex = 0;
 
@@ -414,15 +404,22 @@
             }
         });
 
-        // === LỜI CHÚC PHÚC — Link chính thức ===
+        // === Tự động phát video khi vào trang ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('weddingVideo');
+            if (video) {
+                video.play().catch(err => {
+                    console.log('Trình duyệt yêu cầu tương tác để phát âm thanh:', err);
+                });
+            }
+        });
+
+        // === LỜI CHÚC PHÚC ===
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzoeP6yNyPyuQ1QAspTMHUkJQqrq0mzlIIb74ij1UMrwWB0plvIauOi6RXDDxnCELJUCQ/exec";
 
         async function loadWishes() {
             try {
-                const res = await fetch(GOOGLE_SCRIPT_URL + "?action=read", {
-                    method: 'GET',
-                    cache: 'no-cache'
-                });
+                const res = await fetch(GOOGLE_SCRIPT_URL + "?action=read", { cache: 'no-cache' });
                 const data = await res.json();
                 renderWishes(data.wishes || []);
             } catch (e) {
