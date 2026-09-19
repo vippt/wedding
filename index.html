@@ -42,6 +42,24 @@
             .animate-fade-delay-3 { animation: fadeIn 1.5s ease-out 1.5s forwards; opacity: 0; }
             .img-zoom { transition: transform 0.4s ease; }
             .img-zoom:hover { transform: scale(1.05); }
+            .tv-frame {
+                background: linear-gradient(145deg, #8B4513, #5D2E0C);
+                border-radius: 24px;
+                box-shadow: 
+                    inset 0 0 0 6px #D4AF37,
+                    inset 0 0 0 10px #8B4513,
+                    0 10px 30px rgba(0,0,0,0.4),
+                    0 5px 15px rgba(0,0,0,0.3) inset;
+            }
+            .tv-screen {
+                background: #1a1a1a;
+                border-radius: 16px;
+                box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            }
+            .tv-stand {
+                background: linear-gradient(180deg, #8B4513, #5D2E0C);
+                border-radius: 4px;
+            }
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -64,26 +82,22 @@
                 <span class="mx-3 text-dark">&</span>
                 <span class="text-primary">Phi Phi</span>
             </h1>
-            <p class="text-xl md:text-2xl font-light mb-8">Ngày 01/01/2021 — 11 Giờ tại TTC Phan Thiết</p>
+            <p class="text-xl md:text-2xl font-light mb-8">Ngày 01/01/2021 — TTC Phan Thiết</p>
             
-            <!-- === Đã SỬA: Đếm từ ngày cưới đến nay === -->
-            <div id="countdown" class="flex justify-center gap-3 md:gap-6 mb-10 animate-fade-delay">
-                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
-                    <div id="days" class="text-2xl md:text-3xl font-bold text-primary">00</div>
-                    <div class="text-xs md:text-sm text-dark/60">Ngày bên nhau</div>
+            <!-- Đếm: Ngày bên nhau + Năm hạnh phúc -->
+            <div id="countdown" class="flex justify-center gap-6 md:gap-10 mb-10 animate-fade-delay">
+                <div class="bg-white/60 bg-blur rounded-xl px-6 py-5 w-32 md:w-40">
+                    <div id="days" class="text-3xl md:text-4xl font-bold text-primary">00</div>
+                    <div class="text-sm text-dark/60 mt-1">Ngày bên nhau</div>
                 </div>
-                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
-                    <div id="years" class="text-2xl md:text-3xl font-bold text-primary">00</div>
-                    <div class="text-xs md:text-sm text-dark/60">Năm hạnh phúc</div>
-                </div>
-                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
-                    <div id="hours" class="text-2xl md:text-3xl font-bold text-primary">00</div>
-                    <div class="text-xs md:text-sm text-dark/60">Giờ yêu thương</div>
+                <div class="bg-white/60 bg-blur rounded-xl px-6 py-5 w-32 md:w-40">
+                    <div id="years" class="text-3xl md:text-4xl font-bold text-primary">00</div>
+                    <div class="text-sm text-dark/60 mt-1">Năm hạnh phúc</div>
                 </div>
             </div>
             
             <a href="#about" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-accent transition-all duration-300 shadow-lg animate-fade-delay-2">
-                Tìm Hiểu Về Chúng Tôi <i class="fa fa-chevron-down ml-2 text-sm"></i>
+                Khám Phá Cùng Chúng Tôi <i class="fa fa-chevron-down ml-2 text-sm"></i>
             </a>
         </div>
     </section>
@@ -258,14 +272,48 @@
         </div>
     </section>
 
+    <!-- 📺 VIDEO YOUTUBE — KHUNG TV -->
+    <section id="video" class="py-20 px-6 bg-rose-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-script text-4xl text-center text-primary mb-4">Khoảnh Khắc Đặc Biệt 📺</h2>
+            <p class="text-center text-dark/60 mb-12">Video kỷ niệm của chúng tôi</p>
+            
+            <!-- Khung TV -->
+            <div class="flex flex-col items-center">
+                <div class="tv-frame p-4 md:p-6 w-full max-w-3xl">
+                    <div class="tv-screen overflow-hidden aspect-video w-full">
+                        <!-- Thay link video YouTube của bạn vào đây -->
+                        <iframe 
+                            id="youtubeVideo"
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&rel=0&modestbranding=1"
+                            title="Video Kỷ Niệm Cưới"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <!-- Chân TV -->
+                <div class="flex flex-col items-center mt-2">
+                    <div class="tv-stand w-24 h-3"></div>
+                    <div class="tv-stand w-40 h-2 mt-1 rounded-b-lg"></div>
+                </div>
+            </div>
+            
+            <p class="text-center mt-8 text-dark/50 text-sm">
+                💡 Thay link video YouTube của bạn vào mã để hiển thị đúng nhé
+            </p>
+        </div>
+    </section>
+
     <!-- LỜI CHÚC PHÚC -->
-    <section id="wishes" class="py-20 px-6 bg-rose-50">
+    <section id="wishes" class="py-20 px-6 bg-white">
         <div class="max-w-3xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-4">Lời Chúc Phúc 💌</h2>
             <p class="text-center text-dark/60 mb-10">Gửi lời chúc tốt đẹp của bạn đến cặp đôi</p>
             
-            <!-- Form Gửi Lời Chúc -->
-            <form id="wishForm" class="bg-white rounded-2xl shadow-lg p-8 mb-12 space-y-4">
+            <form id="wishForm" class="bg-rose-50 rounded-2xl shadow-lg p-8 mb-12 space-y-4">
                 <div>
                     <input type="text" id="wishName" placeholder="Tên của bạn *" required
                         class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
@@ -281,7 +329,6 @@
                 <p id="wishStatus" class="text-center text-sm hidden"></p>
             </form>
             
-            <!-- Danh Sách Lời Chúc -->
             <div>
                 <h3 class="font-serif text-xl text-center mb-6">
                     <i class="fa fa-comments text-primary mr-2"></i>
@@ -294,46 +341,6 @@
         </div>
     </section>
 
-    <!-- Thư Mời & RSVP -->
-    <section class="py-20 px-6 bg-white">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="font-script text-4xl text-primary mb-6">Thư Mời</h2>
-            <p class="text-lg mb-10 leading-relaxed">
-                Với niềm hạnh phúc vô bờ, chúng tôi trân trọng cảm ơn bạn đã cùng chứng kiến ngày trọng đại. 
-                Sự hiện diện của bạn là niềm vinh dự cho chúng tôi! 💐
-            </p>
-            
-            <h3 class="font-serif text-xl mb-6">Xác Nhận Tham Dự</h3>
-            <form id="rsvpForm" class="bg-rose-50 rounded-2xl shadow-lg p-8 space-y-4 text-left">
-                <div>
-                    <input type="text" placeholder="Họ và tên của bạn *" required
-                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
-                </div>
-                <div>
-                    <input type="tel" placeholder="Số điện thoại"
-                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
-                </div>
-                <div>
-                    <select required
-                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
-                        <option value="">Bạn có tham dự? *</option>
-                        <option value="yes">💖 Có, tôi sẽ đến!</option>
-                        <option value="no">😔 Xin lỗi, tôi không thể đến</option>
-                    </select>
-                </div>
-                <div>
-                    <textarea placeholder="Lời nhắn gửi đến cặp đôi (tùy chọn)" rows="3"
-                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50"></textarea>
-                </div>
-                <button type="submit" 
-                    class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-accent transition">
-                    Gửi Xác Nhận 💌
-                </button>
-            </form>
-            <p id="rsvpMessage" class="mt-4 text-green-600 hidden">✅ Cảm ơn bạn! Chúng tôi đã nhận được lời hồi đáp.</p>
-        </div>
-    </section>
-
     <!-- Chân trang -->
     <footer class="bg-dark text-white/80 py-10 text-center px-6">
         <p class="font-script text-2xl text-primary mb-4">Đỗ Thị Thuận & Lê Phi Phi</p>
@@ -343,8 +350,8 @@
 
     <!-- JavaScript -->
     <script>
-        // === ĐÃ SỬA: Đếm từ ngày cưới đến nay ===
-        const weddingDate = new Date(2021, 0, 1, 11, 0, 0); // 01/01/2021 11:00
+        // === Đếm: Ngày bên nhau + Năm hạnh phúc ===
+        const weddingDate = new Date(2021, 0, 1, 11, 0, 0); // 01/01/2021
 
         function updateCountdown() {
             const now = new Date();
@@ -353,24 +360,18 @@
             if (diff < 0) {
                 document.getElementById('days').textContent = '00';
                 document.getElementById('years').textContent = '00';
-                document.getElementById('hours').textContent = '00';
                 return;
             }
             
-            // Tính tổng ngày
             const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-            // Tính năm tròn
             const years = now.getFullYear() - weddingDate.getFullYear();
-            // Tính tổng giờ
-            const totalHours = Math.floor(diff / (1000 * 60 * 60));
             
             document.getElementById('days').textContent = String(totalDays).padStart(2, '0');
             document.getElementById('years').textContent = String(years).padStart(2, '0');
-            document.getElementById('hours').textContent = String(totalHours).padStart(2, '0');
         }
         
         updateCountdown();
-        setInterval(updateCountdown, 60000); // Cập nhật mỗi phút
+        setInterval(updateCountdown, 3600000); // Cập nhật mỗi giờ
 
         // === Album Ảnh ===
         const albumImages = [
@@ -415,31 +416,33 @@
             }
         });
 
-        // === LỜI CHÚC PHÚC — Đã dán link của bạn ===
-        // ⚠️ Nếu có link /exec mới thì thay vào đây nhé
+        // === LỜI CHÚC PHÚC — Link chính thức ===
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzoeP6yNyPyuQ1QAspTMHUkJQqrq0mzlIIb74ij1UMrwWB0plvIauOi6RXDDxnCELJUCQ/exec";
 
         async function loadWishes() {
             try {
-                const res = await fetch(GOOGLE_SCRIPT_URL + "?action=read");
+                const res = await fetch(GOOGLE_SCRIPT_URL + "?action=read", {
+                    method: 'GET',
+                    cache: 'no-cache'
+                });
                 const data = await res.json();
                 renderWishes(data.wishes || []);
             } catch (e) {
                 console.log("Lỗi tải lời chúc:", e);
                 document.getElementById('wishesList').innerHTML = 
-                    '<p class="text-center text-amber-600 py-4">Đang kết nối... vui lòng tải lại trang sau.</p>';
+                    '<p class="text-center text-amber-600 py-4">Đang kết nối... vui lòng tải lại trang.</p>';
             }
         }
 
         function renderWishes(wishes) {
             const container = document.getElementById('wishesList');
             if (wishes.length === 0) {
-                container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên gửi lời chúc! ✨</p>';
+                container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên gửi! ✨</p>';
                 return;
             }
             wishes.reverse();
             container.innerHTML = wishes.map(w => `
-                <div class="wish-card bg-white rounded-xl shadow-md p-5 border-l-4 border-primary/70">
+                <div class="wish-card bg-rose-50 rounded-xl shadow-sm p-5 border-l-4 border-primary/70">
                     <p class="font-semibold text-primary mb-2">${escapeHtml(w.name)}</p>
                     <p class="text-dark/80">${escapeHtml(w.message)}</p>
                     <p class="text-xs text-dark/40 mt-2">${formatDate(w.createdAt)}</p>
@@ -461,23 +464,29 @@
             statusEl.className = "text-center text-sm text-blue-500";
             
             try {
-                await fetch(GOOGLE_SCRIPT_URL, {
+                const res = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({action: 'write', name, message})
                 });
                 
-                statusEl.textContent = "✅ Cảm ơn bạn! Lời chúc đã được gửi.";
-                statusEl.className = "text-center text-sm text-green-600";
+                const result = await res.json();
                 
-                setTimeout(loadWishes, 500);
-                
-                document.getElementById('wishName').value = '';
-                document.getElementById('wishMessage').value = '';
-                
-                setTimeout(() => statusEl.classList.add('hidden'), 5000);
+                if (result.success || result.wishes !== undefined) {
+                    statusEl.textContent = "✅ Cảm ơn bạn! Lời chúc đã được gửi.";
+                    statusEl.className = "text-center text-sm text-green-600";
+                    
+                    setTimeout(loadWishes, 600);
+                    
+                    document.getElementById('wishName').value = '';
+                    document.getElementById('wishMessage').value = '';
+                    
+                    setTimeout(() => statusEl.classList.add('hidden'), 4000);
+                } else {
+                    throw new Error(result.error || "Lỗi không xác định");
+                }
             } catch (err) {
-                statusEl.textContent = "⚠️ Lỗi gửi, vui lòng thử lại sau.";
+                statusEl.textContent = "⚠️ Lỗi gửi: " + err.message;
                 statusEl.className = "text-center text-sm text-red-500";
             }
         });
@@ -495,13 +504,6 @@
         }
 
         loadWishes();
-
-        // === RSVP ===
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            document.getElementById('rsvpMessage').classList.remove('hidden');
-            this.reset();
-        });
     </script>
 </body>
 </html>
