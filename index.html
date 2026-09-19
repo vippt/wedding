@@ -272,7 +272,7 @@
         </div>
     </section>
 
-    <!-- 📺 VIDEO GOOGLE DRIVE — KHUNG TV TỰ PHÁT -->
+        <!-- 📺 VIDEO GOOGLE DRIVE — KHUNG TV ĐÃ SỬA -->
     <section id="video" class="py-20 px-6 bg-white">
         <div class="max-w-4xl mx-auto">
             <h2 class="font-script text-4xl text-center text-primary mb-4">Khoảnh Khắc Đặc Biệt 📺</h2>
@@ -281,17 +281,14 @@
             <div class="flex flex-col items-center">
                 <div class="tv-frame p-4 md:p-6 w-full max-w-3xl">
                     <div class="tv-screen overflow-hidden aspect-video w-full">
-                        <!-- Video từ Google Drive - Tự động phát có âm thanh -->
-                        <video 
-                            id="weddingVideo"
-                            class="w-full h-full object-cover"
-                            autoplay
-                            playsinline
-                            controls
-                            preload="auto">
-                            <source src="https://drive.google.com/uc?export=download&id=1Yca3WbQ6d1Om41RG94F5wTtpYjRha84T" type="video/mp4">
-                            Trình duyệt của bạn không hỗ trợ phát video.
-                        </video>
+                        <!-- Dùng định dạng EMBED — chắc chắn phát được nhất -->
+                        <iframe 
+                            class="w-full h-full"
+                            src="https://drive.google.com/file/d/1Yca3WbQ6d1Om41RG94F5wTtpYjRha84T/preview?autoplay=1&mute=1&loop=1"
+                            allow="autoplay; fullscreen"
+                            allowfullscreen
+                            frameborder="0">
+                        </iframe>
                     </div>
                 </div>
                 <div class="flex flex-col items-center mt-2">
@@ -299,6 +296,10 @@
                     <div class="tv-stand w-40 h-2 mt-1 rounded-b-lg"></div>
                 </div>
             </div>
+            
+            <p class="text-center mt-6 text-dark/50 text-sm">
+                💡 Nhấn nút 🔊 trên video để bật âm thanh
+            </p>
         </div>
     </section>
 
