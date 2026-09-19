@@ -3,11 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetTruyen Clone</title>
-    <script src="script.js"></script>
+    <title>💍 Thiệp Cưới — [Tên Cô Dâu] & [Tên Chú Rể]</title>
+    
+    <!-- Tailwind CSS & Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Cấu hình Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37',
+                        secondary: '#F8E2E7',
+                        accent: '#C9A96A',
+                        dark: '#4A3933',
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'script': ['Great Vibes', 'cursive'],
+                        'sans': ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+            .bg-blur { backdrop-filter: blur(8px); }
+            .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
+            .animate-fade-delay { animation: fadeIn 1.5s ease-out 0.5s forwards; opacity: 0; }
+            .animate-fade-delay-2 { animation: fadeIn 1.5s ease-out 1s forwards; opacity: 0; }
+            .animate-fade-delay-3 { animation: fadeIn 1.5s ease-out 1.5s forwards; opacity: 0; }
+            .img-zoom { transition: transform 0.4s ease; }
+            .img-zoom:hover { transform: scale(1.05); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: #4A3933; }
+        .heart-bg { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-5-8-18-6-18 6 0 8 18 24 18 24s18-16 18-24c0-12-13-14-18-6z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E"); }
+        .album-modal { transition: opacity 0.3s ease; }
+    </style>
 </head>
-<body>
-    <h1>Danh sách truyện mới cập nhật</h1>
-    <div id="truyen-list"></div>
+<body class="bg-rose-50 heart-bg">
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-rose-100 to-rose-50">
+        <div class="text-center px-6 py-20 animate-fade-in">
+            <p class="text-lg md:text-xl text-dark/70 mb-4">Chúng tôi sắp kết hôn 💒</p>
+            <h1 class="font-script text-5xl md:text-7xl lg:text-8xl text-dark mb-6">
+                <span class="text-primary">[Tên Cô Dâu]</span>
+                <span class="mx-3 text-dark">&</span>
+                <span class="text-primary">[Tên Chú Rể]</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-light mb-8">Ngày [Ngày Tháng Năm] — [Giờ] tại [Địa Điểm]</p>
+            
+            <!-- Đếm ngược -->
+            <div id="countdown" class="flex justify-center gap-3 md:gap-6 mb-10 animate-fade-delay">
+                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
+                    <div id="days" class="text-2xl md:text-3xl font-bold text-primary">00</div>
+                    <div class="text-xs md:text-sm text-dark/60">Ngày</div>
+                </div>
+                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
+                    <div id="hours" class="text-2xl md:text-3xl font-bold text-primary">00</div>
+                    <div class="text-xs md:text-sm text-dark/60">Giờ</div>
+                </div>
+                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
+                    <div id="minutes" class="text-2xl md:text-3xl font-bold text-primary">00</div>
+                    <div class="text-xs md:text-sm text-dark/60">Phút</div>
+                </div>
+                <div class="bg-white/60 bg-blur rounded-xl px-4 py-3 md:px-6 md:py-4 w-20 md:w-28">
+                    <div id="seconds" class="text-2xl md:text-3xl font-bold text-primary">00</div>
+                    <div class="text-xs md:text-sm text-dark/60">Giây</div>
+                </div>
+            </div>
+            
+            <a href="#about" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-accent transition-all duration-300 shadow-lg animate-fade-delay-2">
+                Tìm Hiểu Về Chúng Tôi <i class="fa fa-chevron-down ml-2 text-sm"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ✅ PHẦN MỚI: GIỚI THIỆU CÔ DÂU & CHÚ RỂ -->
+    <section id="about" class="py-20 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="font-script text-4xl text-center text-primary mb-12">Chúng Tôi Là Ai 💑</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Cô Dâu -->
+                <div class="text-center animate-fade-delay">
+                    <div class="relative w-56 h-56 mx-auto mb-6">
+                        <div class="absolute inset-0 bg-primary/20 rounded-full blur-md"></div>
+                        <img src="[LINK_ANH_CO_DAU]" alt="[Tên Cô Dâu]" 
+                            class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-xl">
+                    </div>
+                    <h3 class="font-script text-3xl text-primary mb-2">[Tên Cô Dâu]</h3>
+                    <p class="text-dark/60 italic mb-3">💍 Cô Dâu</p>
+                    <p class="text-dark/80 leading-relaxed px-4">
+                        [Giới thiệu ngắn về cô dâu — tính cách, sở thích, nghề nghiệp...]
+                        Ví dụ: Nhân viên văn phòng, yêu thích du lịch, nấu ăn và chăm sóc gia đình.
+                    </p>
+                </div>
+                
+                <!-- Chú Rể -->
+                <div class="text-center animate-fade-delay-2">
+                    <div class="relative w-56 h-56 mx-auto mb-6">
+                        <div class="absolute inset-0 bg-primary/20 rounded-full blur-md"></div>
+                        <img src="[LINK_ANH_CHU_RE]" alt="[Tên Chú Rể]" 
+                            class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-xl">
+                    </div>
+                    <h3 class="font-script text-3xl text-primary mb-2">[Tên Chú Rể]</h3>
+                    <p class="text-dark/60 italic mb-3">🤵 Chú Rể</p>
+                    <p class="text-dark/80 leading-relaxed px-4">
+                        [Giới thiệu ngắn về chú rể — tính cách, sở thích, nghề nghiệp...]
+                        Ví dụ: Kỹ sư, yêu thể thao, âm nhạc và luôn quan tâm người thân.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-fade-delay-3">
+                <div class="inline-block bg-rose-50 rounded-2xl p-8 shadow-md">
+                    <p class="text-lg italic text-dark/70">
+                        "Hai thế giới riêng biệt, đến khi gặp nhau, trở thành một hành trình mãi mãi."
+                    </p>
+                    <p class="mt-3 text-primary font-medium">— [Tên Cô Dâu] & [Tên Chú Rể] —</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Câu Chuyện Tình Yêu -->
+    <section class="py-20 px-6 bg-rose-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-script text-4xl text-center text-primary mb-12">Câu Chuyện Chúng Tôi</h2>
+            <div class="space-y-10">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="md:w-1/3 text-center">
+                        <p class="text-primary font-semibold">Ngày Gặp Nhau</p>
+                        <p class="text-dark/60 text-sm">[Ngày/tháng/năm]</p>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-dark/80 italic">"[Câu chuyện ngắn gọn về lần đầu gặp nhau...]"</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="md:w-1/3 text-center">
+                        <p class="text-primary font-semibold">Ngày Yêu Nhau</p>
+                        <p class="text-dark/60 text-sm">[Ngày/tháng/năm]</p>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-dark/80 italic">"[Khoảnh khắc quyết định yêu nhau...]"</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="md:w-1/3 text-center">
+                        <p class="text-primary font-semibold">Ngày Đính Hôn 💍</p>
+                        <p class="text-dark/60 text-sm">[Ngày/tháng/năm]</p>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-dark/80 italic">"[Lời cầu hôn...]"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ PHẦN MỚI: ALBUM ẢNH CƯỚI -->
+    <section id="album" class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-script text-4xl text-center text-primary mb-4">Album Ảnh Cưới 📸</h2>
+            <p class="text-center text-dark/60 mb-12">Những khoảnh khắc đẹp nhất của chúng tôi</p>
+            
+            <!-- Lưới ảnh -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- Ảnh 1 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(0)">
+                    <img src="[LINK_ANH_1]" alt="Ảnh cưới 1" class="w-full h-48 md:h-56 object-cover">
+                </div>
+                <!-- Ảnh 2 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(1)">
+                    <img src="[LINK_ANH_2]" alt="Ảnh cưới 2" class="w-full h-48 md:h-56 object-cover">
+                </div>
+                <!-- Ảnh 3 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(2)">
+                    <img src="[LINK_ANH_3]" alt="Ảnh cưới 3" class="w-full h-48 md:h-56 object-cover">
+                </div>
+                <!-- Ảnh 4 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(3)">
+                    <img src="[LINK_ANH_4]" alt="Ảnh cưới 4" class="w-full h-48 md:h-56 object-cover">
+                </div>
+                <!-- Ảnh 5 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(4)">
+                    <img src="[LINK_ANH_5]" alt="Ảnh cưới 5" class="w-full h-48 md:h-56 object-cover">
+                </div>
+                <!-- Ảnh 6 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(5)">
+                    <img src="[LINK_ANH_6]" alt="Ảnh cưới 6" class="w-full h-48 md:h-56 object-cover">
+                </div>
+                <!-- Ảnh 7 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(6)">
+                    <img src="[LINK_ANH_7]" alt="Ảnh cưới 7" class="w-full h-48 md:h-56 object-cover">
+                </div>
+                <!-- Ảnh 8 -->
+                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(7)">
+                    <img src="[LINK_ANH_8]" alt="Ảnh cưới 8" class="w-full h-48 md:h-56 object-cover">
+                </div>
+            </div>
+            
+            <p class="text-center mt-6 text-dark/50 text-sm">
+                Nhấp vào ảnh để xem lớn hơn 💫
+            </p>
+        </div>
+    </section>
+
+    <!-- Modal Xem Ảnh Lớn -->
+    <div id="albumModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 album-modal">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl hover:text-primary">
+            <i class="fa fa-times"></i>
+        </button>
+        <button onclick="prevImage()" class="absolute left-4 text-white text-3xl hover:text-primary">
+            <i class="fa fa-chevron-left"></i>
+        </button>
+        <img id="modalImage" src="" alt="Xem lớn" class="max-w-[90%] max-h-[80vh] rounded-lg shadow-2xl">
+        <button onclick="nextImage()" class="absolute right-4 text-white text-3xl hover:text-primary">
+            <i class="fa fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Chi Tiết Sự Kiện -->
+    <section id="details" class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="font-script text-4xl text-center text-primary mb-12">Thông Tin Lễ Cưới</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Lễ Tân Hôn -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition">
+                    <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-heart text-primary text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold mb-3">Lễ Tân Hôn</h3>
+                    <p class="text-dark/70 mb-2">📅 [Ngày Tháng Năm]</p>
+                    <p class="text-dark/70 mb-2">🕐 [Giờ]</p>
+                    <p class="text-dark/70 mb-4">📍 [Địa điểm — Tên Nhà Thờ/Tư Gia]</p>
+                    <a href="[Link Bản Đồ]" target="_blank" class="inline-block text-primary hover:underline">
+                        <i class="fa fa-map-marker"></i> Xem bản đồ
+                    </a>
+                </div>
+                
+                <!-- Tiệc Cưới -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition">
+                    <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-glass text-primary text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold mb-3">Tiệc Cưới</h3>
+                    <p class="text-dark/70 mb-2">📅 [Ngày Tháng Năm]</p>
+                    <p class="text-dark/70 mb-2">🕐 [Giờ]</p>
+                    <p class="text-dark/70 mb-4">📍 [Địa điểm — Nhà Hàng/Khách Sạn]</p>
+                    <a href="[Link Bản Đồ]" target="_blank" class="inline-block text-primary hover:underline">
+                        <i class="fa fa-map-marker"></i> Xem bản đồ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thư Mời & RSVP -->
+    <section class="py-20 px-6 bg-rose-50">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="font-script text-4xl text-primary mb-6">Thư Mời</h2>
+            <p class="text-lg mb-10 leading-relaxed">
+                Với niềm hạnh phúc vô bờ, chúng tôi trân trọng mời bạn đến chứng kiến ngày trọng đại. 
+                Sự hiện diện của bạn là niềm vinh dự cho chúng tôi! 💐
+            </p>
+            
+            <h3 class="font-serif text-xl mb-6">Xác Nhận Tham Dự</h3>
+            <form id="rsvpForm" class="bg-white rounded-2xl shadow-lg p-8 space-y-4 text-left">
+                <div>
+                    <input type="text" placeholder="Họ và tên của bạn *" required
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <input type="tel" placeholder="Số điện thoại"
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <select required
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="">Bạn có tham dự? *</option>
+                        <option value="yes">💖 Có, tôi sẽ đến!</option>
+                        <option value="no">😔 Xin lỗi, tôi không thể đến</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea placeholder="Lời nhắn gửi đến cặp đôi (tùy chọn)" rows="3"
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50"></textarea>
+                </div>
+                <button type="submit" 
+                    class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-accent transition">
+                    Gửi Xác Nhận 💌
+                </button>
+            </form>
+            <p id="rsvpMessage" class="mt-4 text-green-600 hidden">✅ Cảm ơn bạn! Chúng tôi đã nhận được lời hồi đáp.</p>
+        </div>
+    </section>
+
+    <!-- Chân trang -->
+    <footer class="bg-dark text-white/80 py-10 text-center px-6">
+        <p class="font-script text-2xl text-primary mb-4">[Tên Cô Dâu] & [Tên Chú Rể]</p>
+        <p class="text-sm">Chúng tôi rất mong được gặp bạn! 💍💕</p>
+        <p class="text-xs mt-4 opacity-50">&copy; 2026 — Thiệp cưới online</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // === Đếm ngược thời gian ===
+        const weddingDate = new Date(2026, 11, 20, 10, 0, 0); // Thay ngày cưới của bạn
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = weddingDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // === Danh sách ảnh Album ===
+        const albumImages = [
+            "[LINK_ANH_1]",
+            "[LINK_ANH_2]",
+            "[LINK_ANH_3]",
+            "[LINK_ANH_4]",
+            "[LINK_ANH_5]",
+            "[LINK_ANH_6]",
+            "[LINK_ANH_7]",
+            "[LINK_ANH_8]"
+        ];
+        let currentIndex = 0;
+
+        function openModal(index) {
+            currentIndex = index;
+            document.getElementById('modalImage').src = albumImages[currentIndex];
+            document.getElementById('albumModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('albumModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + albumImages.length) % albumImages.length;
+            document.getElementById('modalImage').src = albumImages[currentIndex];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % albumImages.length;
+            document.getElementById('modalImage').src = albumImages[currentIndex];
+        }
+
+        // Phím tắt điều hướng ảnh
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('albumModal').classList.contains('hidden')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            }
+        });
+
+        // === Xử lý form RSVP ===
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('rsvpMessage').classList.remove('hidden');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
