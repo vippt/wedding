@@ -32,51 +32,72 @@
         }
     </script>
     
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-            .bg-blur { backdrop-filter: blur(8px); }
-            .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
-            .animate-fade-delay { animation: fadeIn 1.5s ease-out 0.5s forwards; opacity: 0; }
-            .animate-fade-delay-2 { animation: fadeIn 1.5s ease-out 1s forwards; opacity: 0; }
-            .animate-fade-delay-3 { animation: fadeIn 1.5s ease-out 1.5s forwardsModified; opacity: 0; }
-            .img-zoom { transition: transform 0.4s ease; }
-            .img-zoom:hover { transform: scale(1.05); }
+    <style>
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            color: #4A3933;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        .heart-bg { 
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-5-8-18-6-18 6 0 12 18 24 18 24s18-12 18-24c0-12-13-14-18-6z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E");
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes fadeInModified {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
+        .animate-fade-delay { animation: fadeIn 1.5s ease-out 0.5s forwards; opacity: 0; }
+        .animate-fade-delay-2 { animation: fadeIn 1.5s ease-out 1s forwards; opacity: 0; }
+        .img-zoom { transition: transform 0.4s ease; }
+        .img-zoom:hover { transform: scale(1.05); }
+        .tv-frame {
+            background: linear-gradient(145deg, #8B4513, #5D2E0C);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 
+                inset 0 0 0 4px #D4AF37,
+                inset 0 0 0 8px #8B4513,
+                0 8px 25px rgba(0,0,0,0.35);
+            width: 100%;
+            box-sizing: border-box;
         }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; color: #4A3933; }
-        .heart-bg { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10c-5-8-18-6-18 6 0 12 18 24 18 24s18-12 18-24c0-12-13-14-18-6z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E"); }
-        .album-modal { transition: opacity 0.3s ease; }
+        .tv-screen {
+            background: #000;
+            border-radius: 14px;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+        .tv-stand {
+            background: linear-gradient(180deg, #8B4513, #5D2E0C);
+            border-radius: 3px;
+        }
         .wish-card { animation: fadeIn 0.5s ease-out forwards; }
     </style>
 </head>
 <body class="bg-rose-50 heart-bg">
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-rose-100 to-rose-50">
-        <div class="text-center px-6 py-20 animate-fade-in">
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-rose-100 to-rose-50 px-4">
+        <div class="text-center py-20 animate-fade-in w-full max-w-4xl mx-auto">
             <p class="text-lg md:text-xl text-dark/70 mb-4">Chúng tôi đã kết hôn 💒</p>
-            <h1 class="font-script text-5xl md:text-7xl lg:text-8xl text-dark mb-6">
+            <h1 class="font-script text-4xl sm:text-5xl md:text-7xl text-dark mb-6">
                 <span class="text-primary">Thị Thuận</span>
-                <span class="mx-3 text-dark">&</span>
+                <span class="mx-2 md:mx-3 text-dark">&</span>
                 <span class="text-primary">Phi Phi</span>
             </h1>
-            <p class="text-xl md:text-2xl font-light mb-8">Ngày 01/01/2021 — TTC Phan Thiết</p>
+            <p class="text-lg md:text-2xl font-light mb-8">Ngày 01/01/2021 — TTC Phan Thiết</p>
             
-            <!-- Đếm: Ngày bên nhau + Năm hạnh phúc -->
-            <div id="countdown" class="flex justify-center gap-4 md:gap-10 mb-10 animate-fade-delay">
-                <div class="bg-white/60 bg-blur rounded-xl px-4 py-4 w-28 md:w-40">
+            <div id="countdown" class="flex justify-center gap-4 md:gap-10 mb-10 animate-fade-delay flex-wrap">
+                <div class="bg-white/60 backdrop-blur-sm rounded-xl px-4 py-4 w-28 md:w-40">
                     <div id="days" class="text-2xl md:text-4xl font-bold text-primary">00</div>
                     <div class="text-sm text-dark/60 mt-1">Ngày bên nhau</div>
                 </div>
-                <div class="bg-white/60 bg-blur rounded-xl px-4 py-4 w-28 md:w-40">
+                <div class="bg-white/60 backdrop-blur-sm rounded-xl px-4 py-4 w-28 md:w-40">
                     <div id="years" class="text-2xl md:text-4xl font-bold text-primary">00</div>
                     <div class="text-sm text-dark/60 mt-1">Năm hạnh phúc</div>
                 </div>
@@ -88,14 +109,13 @@
         </div>
     </section>
 
-    <!-- Giới Thiệu Cô Dâu & Chú Rể -->
-    <section id="about" class="py-20 px-6 bg-white">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="font-script text-4xl text-center text-primary mb-12">Chúng Tôi Là Ai 💑</h2>
+    <!-- Giới Thiệu -->
+    <section id="about" class="py-20 px-4 bg-white">
+        <div class="max-w-5xl mx-auto w-full">
+            <h2 class="font-script text-3xl md:text-4xl text-center text-primary mb-12">Chúng Tôi Là Ai 💑</h2>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Cô Dâu -->
-                <div class="text-center animate-fade-delay">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div class="text-center">
                     <div class="relative w-56 h-56 mx-auto mb-6">
                         <div class="absolute inset-0 bg-primary/20 rounded-full blur-md"></div>
                         <img src="/anh/co-dau.jpg" alt="Đỗ Thị Thuận" 
@@ -108,8 +128,7 @@
                     </p>
                 </div>
                 
-                <!-- Chú Rể -->
-                <div class="text-center animate-fade-delay-2">
+                <div class="text-center">
                     <div class="relative w-56 h-56 mx-auto mb-6">
                         <div class="absolute inset-0 bg-primary/20 rounded-full blur-md"></div>
                         <img src="/anh/chu-re.jpg" alt="Lê Phi Phi" 
@@ -122,191 +141,29 @@
                     </p>
                 </div>
             </div>
-            
-            <div class="text-center mt-12 animate-fade-delay-3">
-                <div class="inline-block bg-rose-50 rounded-2xl p-8 shadow-md">
-                    <p class="text-lg italic text-dark/70">
-                        "Hai thế giới riêng biệt, đến khi gặp nhau, trở thành một hành trình mãi mãi."
-                    </p>
-                    <p class="mt-3 text-primary font-medium">— Đỗ Thị Thuận & Lê Phi Phi —</p>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Câu Chuyện Tình Yêu -->
-    <section class="py-20 px-6 bg-rose-50">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-script text-4xl text-center text-primary mb-12">Câu Chuyện Chúng Tôi</h2>
-            <div class="space-y-10">
-                <div class="flex flex-col md:flex-row items-center gap-6">
-                    <div class="md:w-1/3 text-center">
-                        <p class="text-primary font-semibold">Ngày Gặp Nhau</p>
-                        <p class="text-dark/60 text-sm">18/08/2018</p>
-                    </div>
-                    <div class="md:w-2/3">
-                        <p class="text-dark/80 italic">"Cùng làm chung một công ty và ánh mắt của chúng tôi đã va vào nhau ^^"</p>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row items-center gap-6">
-                    <div class="md:w-1/3 text-center">
-                        <p class="text-primary font-semibold">Ngày Yêu Nhau</p>
-                        <p class="text-dark/60 text-sm">14/02/2019</p>
-                    </div>
-                    <div class="md:w-2/3">
-                        <p class="text-dark/80 italic">"Uống rượu say tỏ tình đấy thì sao nào? =]]"</p>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row items-center gap-6">
-                    <div class="md:w-1/3 text-center">
-                        <p class="text-primary font-semibold">Ngày Đính Hôn 💍</p>
-                        <p class="text-dark/60 text-sm">20/11/2020</p>
-                    </div>
-                    <div class="md:w-2/3">
-                        <p class="text-dark/80 italic">"Hãy làm vợ anh, cùng nhau xây dựng gia đình vui vẻ корпоратив"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Album Ảnh Cưới -->
-    <section id="album" class="py-20 px-6 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="font-script text-4xl text-center text-primary mb-4">Album Ảnh Cưới 📸</h2>
-            <p class="text-center text-dark/60 mb-12">Những khoảnh khắc đẹp nhất của chúng tôi</p>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(0)">
-                    <img src="/anh/1.jpg" alt="Ảnh cưới 1" class="w-full h-48 md:h-56 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(1)">
-                    <img src="/anh/2.jpg" alt="Ảnh cưới 2" class="w-full h-48 md:h-56 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(2)">
-                    <img src="/anh/3.jpg" alt="Ảnh cưới 3" class="w-full h-48 md:h-56 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(3)">
-                    <img src="/anh/4.jpg" alt="Ảnh cưới 4" class="w-full h-48 md:h-56 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(4)">
-                    <img src="/anh/5.jpg" alt="Ảnh cưới 5" class="w-full h-48 md:h-56 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(5)">
-                    <img src="/anh/6.jpg" alt="Ảnh cưới 6" class="w-full h-48 md:h-56 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(6)">
-                    <img src="/anh/7.jpg" alt="Ảnh cưới 7" class="w-full h-48 md:h-56 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-xl shadow-md cursor-pointer img-zoom" onclick="openModal(7)">
-                    <img src="/anh/8.jpg" alt="Ảnh cưới 8" class="w-full h-48 md:h-56 object-cover">
-                </div>
-            </div>
-            
-            <p class="text-center mt-6 text-dark/50 text-sm">
-                Nhấp vào ảnh để xem lớn hơn 💫
-            </p>
-        </div>
-    </section>
-
-    <!-- Modal Xem Ảnh Lớn -->
-    <div id="albumModal" class="fixed insetSupply-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 album-modal">
-        <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl hover:text-primary">
-            <i class="fa fa-times"></i>
-        </button>
-        <button onclick="prevImage()" class="absolute left-4 text-white text-3xl hover:text-primary">
-            <i class="fa fa-chevron-left"></i>
-        </button>
-        <img id="modalImage" src="" alt="Xem lớn" class="max-w-[90%] max-h-[80vh] rounded-lg shadow-2xl">
-        <button onclick="nextImage()" class="absolute right-4 text-white text-3xl hover:text-primary">
-            <i class="fa fa-chevron-right"></i>
-        </button>
-    </div>
-
-    <!-- Thông Tin Lễ Cưới -->
-    <section id="details" class="py-20 px-6 bg-rose-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="font-script text-4xl text-center text-primary mb-12">Thông Tin Lễ Cưới</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition">
-                    <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fa fa-heart text-primary text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold mb-3">Lễ Vu Quy</h3>
-                    <p class="text-dark/70 mb-2">📅 01/01/2021</p>
-                    <p class="text-dark/70 mb-2">🕐 18 Giờ</p>
-                    <p class="text-dark/70 mb-4">📍 Sân Vườn Hạnh Phúc</p>
-                    <a href="https://maps.app.goo.gl/TVckX8toTKtxSvAo9" target="_blank" class="inline-block text-primary hover:underline">
-                        <i class="fa fa-map-marker"></i> Xem bản đồ
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition">
-                    <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fa fa-glass text-primary text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold mb-3">Lễ Tân Hôn</h3>
-                    <p class="text-dark/70 mb-2">📅 02/01/2021</p>
-                    <p class="text-dark/70 mb-2">🕐 12 Giờ</p>
-                    <p class="text-dark/70 mb-4">📍 TTC Palace Phan Thiết</p>
-                    <a href="https://maps.app.goo.gl/dHYpHewto6Z8gTx76" target="_blank" class="inline-block text-primary hover:underline">
-                        <i class="fa fa-map-marker"></i> Xem bản đồ
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 📺 VIDEO VIMEO — KHUNG TV HOÀN HẢO ĐIỆN THOẠI -->
+    <!-- Video Vimeo -->
     <section id="video" class="py-12 px-4 bg-white">
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-3xl mx-auto w-full">
             <h2 class="font-script text-3xl md:text-4xl text-center text-primary mb-3">Khoảnh Khắc Đặc Biệt 📺</h2>
             <p class="text-center text-dark/60 mb-6 text-sm md:text-base">Kỷ niệm đẹp của chúng tôi</p>
             
-            <div style="width: 100%; max-width: 720px; margin: 0 auto;">
-                <!-- Viền TV -->
-                <div style="
-                    background: linear-gradient(145deg, #8B4513, #5D2E0C);
-                    border-radius: 20px;
-                    padding: 12px;
-                    box-shadow: 
-                        inset 0 0 0 4px #D4AF37,
-                        inset 0 0 0 8px #8B4513,
-                        0 8px 25px rgba(0,0,0,0.35);
-                    width: 100%;
-                    box-sizing: border-box;
-                ">
-                    <!-- Màn hình Vimeo -->
-                    <div style="
-                        background: #000;
-                        border-radius: 14px;
-                        width: 100%;
-                        aspect-ratio: 16/9;
-                        overflow: hidden;
-                    ">
+            <div class="w-full max-w-[720px] mx-auto">
+                <div class="tv-frame w-full">
+                    <div class="tv-screen">
                         <iframe 
                             src="https://player.vimeo.com/video/1228467833?autoplay=1&muted=1&loop=1&byline=0&title=0&portrait=0"
-                            style="width: 100%; height: 100%; border: none;"
+                            class="w-full h-full border-0"
                             allow="autoplay; fullscreen; picture-in-picture"
                             allowfullscreen>
                         </iframe>
                     </div>
                 </div>
-                <!-- Chân TV -->
-                <div style="text-align: center; margin-top: 8px;">
-                    <div style="
-                        background: linear-gradient(180deg, #8B4513, #5D2E0C);
-                        width: 80px; height: 8px;
-                        margin: 0 auto;
-                        border-radius: 2px;
-                    "></div>
-                    <div style="
-                        background: linear-gradient(180deg, #8B4513, #5D2E0C);
-                        width: 140px; height: 6px;
-                        margin: 4px auto 0;
-                        border-radius: 0 0 6px 6px;
-                    "></div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="tv-stand w-16 h-2 md:w-24 md:h-3"></div>
+                    <div class="tv-stand w-28 h-1.5 mt-0.5 md:w-40 md:h-2 rounded-b-lg"></div>
                 </div>
             </div>
             
@@ -316,33 +173,36 @@
         </div>
     </section>
 
-    <!-- LỜI CHÚC PHÚC ĐÃ SỬA LỖI FETCH -->
-    <section id="wishes" class="py-20 px-6 bg-rose-50">
-        <div class="max-w-3xl mxMigration-auto">
-            <h2 class="font-script text-4xl text-center text-primary mb-4">Lời Chúc Phúc 💌</h2>
+    <!-- LỜI CHÚC PHÚC — ĐÃ SỬA LỆCH & LƯU DỮ LIỆU -->
+    <section id="wishes" class="py-20 px-4 bg-rose-50">
+        <div class="max-w-3xl mx-auto w-full">
+            <h2 class="font-script text-3xl md:text-4xl text-center text-primary mb-4">Lời Chúc Phúc 💌</h2>
             <p class="text-center text-dark/60 mb-10">Gửi lời chúc tốt đẹp của bạn đến cặp đôi</p>
             
-            <form id="wishForm" class="bg-white rounded-2xl shadow-lg p-8 mb-12 space-y-4">
-                <div>
+            <!-- Form Gửi — ĐÃ CỐ ĐỊNH KHÔNG LỆCH -->
+            <form id="wishForm" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-12 w-full mx-auto">
+                <div class="mb-4">
                     <input type="text" id="wishName" placeholder="Tên của bạn *" required
-                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50 text-base">
                 </div>
-                <div>
-Memory                    <textarea id="wishMessage" placeholder="Lời chúc phúc của bạn *" rows="3" required
-                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50"></textarea>
+                <div class="mb-4">
+                    <textarea id="wishMessage" placeholder="Lời chúc phúc của bạn *" rows="3" required
+                        class="w-full px-4 py-3 rounded-lg border border-rose-200 focus:outline-none focus:ring-2 focus:ring-primary/50 text-base"></textarea>
                 </div>
                 <button type="submit" 
-                    class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-accent transition">
+                    class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-accent transition-all text-lg">
                     Gửi Lời Chúc 💝
                 </button>
-                <p id="wishStatus" class="text-center text-sm hidden"></p>History            </form>
+                <p id="wishStatus" class="text-center text-sm mt-3 min-h-[24px]"></p>
+            </form>
             
-            <div>
+            <!-- Danh Sách Lời Chúc -->
+            <div class="w-full">
                 <h3 class="font-serif text-xl text-center mb-6">
                     <i class="fa fa-comments text-primary mr-2"></i>
                     Lời chúc từ mọi người 💝
                 </h3>
-                <div id="wishesList" class="space-y-4">
+                <div id="wishesList" class="space-y-4 w-full">
                     <p class="text-center text-dark/50 py-4">Đang tải lời chúc...</p>
                 </div>
             </div>
@@ -350,14 +210,14 @@ Memory                    <textarea id="wishMessage" placeholder="Lời chúc ph
     </section>
 
     <!-- Chân trang -->
-    <footer class="bg-dark text-white/80 py-10 text-center px-6">
+    <footer class="bg-dark text-white/80 py-10 text-center px-4">
         <p class="font-script text-2xl text-primary mb-4">Đỗ Thị Thuận & Lê Phi Phi</p>
         <p class="text-sm">Cảm ơn bạn đã cùng chúng tôi lưu giữ khoảnh khắc này! 💍💕</p>
         <p class="text-xs mt-4 opacity-50">&copy; LePhiPhi.Com</p>
     </footer>
 
     <script>
-        // === Đếm: Ngày bên nhau + Năm hạnh phúc ===
+        // === Đếm Ngày & Năm ===
         const weddingDate = new Date(2021, 0, 1, 11, 0, 0);
 
         function updateCountdown() {
@@ -380,130 +240,90 @@ Memory                    <textarea id="wishMessage" placeholder="Lời chúc ph
         updateCountdown();
         setInterval(updateCountdown, 3600000);
 
-        // === Album Ảnh ===
-        const albumImages = [
-            "/anh/1.jpg", "/anh/2.jpg", "/anh/3.jpg", "/anh/4.jpg",
-            "/anh/5.jpg", "/anh/6.jpg", "/anh/7.jpg", "/anh/8.jpg"
-        ];
-        let currentIndex = 0;
-
-        function openModal(index) {
-            currentIndex = index;
-            document.getElementById('modalImage').src = albumImages[currentIndex];
-            document.getElementById('albumModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('albumModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + albumImages.length) % albumImages.length;
-            document.getElementById('modalImage').src = albumImages[currentIndex];
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % albumImages.length;
-            document.getElementById('modalImage').src = albumImages[currentIndex];
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (!document.getElementById('albumModal').classList.contains('hidden')) {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowLeft') prevImage();
-                if (e.key === 'ArrowRight') nextImage();
-            }
-        });
-
-        // === LỜI CHÚC PHÚC — ĐÃ SỬA LỖI ===
-        // ⚠️ THAY LINK NÀY BẰNG LINK MỚI TỪ GOOGLE SCRIPT CỦA BẠN!
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZ0YR1RfIgsAeqLtqYH5AkNDndD3lPxTCwfpLFOUkCUmQEs5yAl_HLFDK0Kvk669iQzA/exec";
+        // 🔑 THAY LINK NÀY BẰNG LINK MỚI TỪ GOOGLE SCRIPT CỦA BẠN
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzoeP6yNyPyuQ1QAspTMHUkJQqrq0mzlIIb74ij1UMrwWB0plvIauOi6RXDDxnCELJUCQ/exec";
 
         async function loadWishes() {
             try {
-                const res = await fetch(GOOGLE_SCRIPT_URL + "?action=read", { 
-                    cache: 'no-cache',
-                    mode: 'cors'
+                const res = await fetch(GOOGLE_SCRIPT_URL, { 
+                    method: 'GET',
+                    cache: 'no-cache'
                 });
                 const data = await res.json();
                 renderWishes(data.wishes || []);
             } catch (e) {
-                console.log("Lỗi tải lời chúc:", e);
+                console.log("Lỗi tải:", e);
                 document.getElementById('wishesList').innerHTML = 
-                    '<p class="text-center text-amber-600 py-4">Đang kết nối... vui lòng tải lại trang.</p>';
+                    '<p class="text-center text-amber-600 py-4">Vui lòng tải lại trang.</p>';
             }
         }
 
         function renderWishes(wishes) {
             const container = document.getElementById('wishesList');
-            if (wishes.length === 0) {
-                container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên gửi! ✨</p>';
+            if (!wishes || wishes.length === 0) {
+                container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên! ✨</p>';
                 return;
             }
             wishes.reverse();
             container.innerHTML = wishes.map(w => `
-                <div class="wish-card bg-rose-50 rounded-xl shadow-sm p-5 border-l-4 border-primary/70">
-                    <p class="font-semibold text-primary mb-2">${escapeHtml(w.name)}</p>
-                    <p class="text-dark/80">${escapeHtml(w.message)}</p>
-                    <p class="text-xs text-dark/40 mt-2">${formatDate(w.createdAt)}</p>
+                <div class="wish-card bg-rose-50 rounded-xl shadow-sm p-5 border-l-4 border-primary/70 w-full">
+                    <p class="font-semibold text-primary mb-2">${escapeHtml(w.name || '')}</p>
+                    <p class="text-dark/80 whitespace-pre-wrap">${escapeHtml(w.message || '')}</p>
+                    <p class="text-xs text-dark/40 mt-2">${formatDate(w.createdAt || '')}</p>
                 </div>
             `).join('');
         }
 
-                document.getElementById('wishForm').addEventListener('submit', async function(e) {
+        document.getElementById('wishForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const name = document.getElementById('wishName').value.trim();
             const message = document.getElementById('wishMessage').value.trim();
             const statusEl = document.getElementById('wishStatus');
             
-            if (!name || !message) return;
+            if (!name || !message) {
+                statusEl.textContent = "⚠️ Vui lòng điền đầy đủ thông tin!";
+                statusEl.className = "text-center text-sm text-red-500";
+                return;
+            }
             
-            statusEl.classList.remove('hidden');
             statusEl.textContent = "Đang gửi...";
             statusEl.className = "text-center text-sm text-blue-500";
             
             try {
-                // Gửi dữ liệu dạng form — tương thích nhất với Apps Script
-                const formData = new URLSearchParams();
-                formData.append('action', 'write');
+                const formData = new FormData();
                 formData.append('name', name);
                 formData.append('message', message);
                 
                 const res = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
                     body: formData
                 });
                 
-                const resultText = await res.text();
+                const text = await res.text();
                 let result;
                 try {
-                    result = JSON.parse(resultText);
+                    result = JSON.parse(text);
                 } catch {
-                    throw new Error("Phản hồi không đúng định dạng");
+                    throw new Error("Kết nối thành công nhưng không nhận được phản hồi");
                 }
                 
                 if (result.success || result.wishes) {
                     statusEl.textContent = "✅ Cảm ơn bạn! Đã lưu lời chúc.";
                     statusEl.className = "text-center text-sm text-green-600";
                     
-                    setTimeout(loadWishes, 800);
+                    setTimeout(loadWishes, 600);
                     
                     document.getElementById('wishName').value = '';
                     document.getElementById('wishMessage').value = '';
                     
-                    setTimeout(() => statusEl.classList.add('hidden'), 4000);
+                    setTimeout(() => { statusEl.textContent = ""; }, 4000);
                 } else {
                     throw new Error(result.error || "Không lưu được");
                 }
                 
             } catch (err) {
-                statusEl.textContent = "⚠️ Lỗi: " + err.message;
+                statusEl.textContent = "⚠️ " + err.message;
                 statusEl.className = "text-center text-sm text-red-500";
                 console.error(err);
             }
