@@ -276,35 +276,64 @@
         </div>
     </section>
 
-    <!-- 📺 VIDEO GOOGLE DRIVE — KHUNG TV HOÀN HẢO ĐIỆN THOẠI -->
-    <section id="video" class="py-16 px-4 bg-white">
+        <!-- 📺 VIDEO VIMEO — KHUNG TV HOÀN HẢO ĐIỆN THOẠI -->
+    <section id="video" class="py-12 px-4 bg-white">
         <div class="max-w-3xl mx-auto">
             <h2 class="font-script text-3xl md:text-4xl text-center text-primary mb-3">Khoảnh Khắc Đặc Biệt 📺</h2>
-            <p class="text-center text-dark/60 mb-8 text-sm md:text-base">Kỷ niệm đẹp của chúng tôi</p>
+            <p class="text-center text-dark/60 mb-6 text-sm md:text-base">Kỷ niệm đẹp của chúng tôi</p>
             
-            <div class="flex flex-col items-center">
-                <div class="tv-frame w-full p-3 md:p-5">
-                    <div class="tv-screen overflow-hidden mx-auto">
+            <div style="width: 100%; max-width: 720px; margin: 0 auto;">
+                <!-- Viền TV -->
+                <div style="
+                    background: linear-gradient(145deg, #8B4513, #5D2E0C);
+                    border-radius: 20px;
+                    padding: 12px;
+                    box-shadow: 
+                        inset 0 0 0 4px #D4AF37,
+                        inset 0 0 0 8px #8B4513,
+                        0 8px 25px rgba(0,0,0,0.35);
+                    width: 100%;
+                    box-sizing: border-box;
+                ">
+                    <!-- Màn hình Vimeo -->
+                    <div style="
+                        background: #000;
+                        border-radius: 14px;
+                        width: 100%;
+                        aspect-ratio: 16/9;
+                        overflow: hidden;
+                    ">
                         <iframe 
-                            class="w-full h-full"
-                            src="https://drive.google.com/file/d/1Yca3WbQ6d1Om41RG94F5wTtpYjRha84T/preview?autoplay=1&mute=1"
-                            allow="autoplay; fullscreen"
-                            allowfullscreen
-                            frameborder="0">
+                            src="https://player.vimeo.com/video/1228467833?autoplay=1&muted=1&loop=1&byline=0&title=0&portrait=0"
+                            style="width: 100%; height: 100%; border: none;"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
                 </div>
-                <div class="flex flex-col items-center mt-2">
-                    <div class="tv-stand w-16 h-2 md:w-24 md:h-3"></div>
-                    <div class="tv-stand w-28 h-1.5 mt-0.5 md:w-40 md:h-2 rounded-b-lg"></div>
+                <!-- Chân TV -->
+                <div style="text-align: center; margin-top: 8px;">
+                    <div style="
+                        background: linear-gradient(180deg, #8B4513, #5D2E0C);
+                        width: 80px; height: 8px;
+                        margin: 0 auto;
+                        border-radius: 2px;
+                    "></div>
+                    <div style="
+                        background: linear-gradient(180deg, #8B4513, #5D2E0C);
+                        width: 140px; height: 6px;
+                        margin: 4px auto 0;
+                        border-radius: 0 0 6px 6px;
+                    "></div>
                 </div>
             </div>
             
-            <p class="text-center mt-5 text-dark/50 text-xs md:text-sm">
-                💡 Nhấn 🔊 trên video để bật âm thanh
+            <p class="text-center mt-6 text-dark/50 text-sm">
+                💡 Nhấn ▶️ trên video để phát | Nhấn 🔊 để bật âm thanh
             </p>
         </div>
     </section>
+
 
     <!-- LỜI CHÚC PHÚC -->
     <section id="wishes" class="py-20 px-6 bg-rose-50">
