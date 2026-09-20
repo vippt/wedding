@@ -402,94 +402,79 @@
             }
         });
 
-        // 🔑 THAY LINK NÀY BẰNG LINK MỚI TỪ GOOGLE SCRIPT CỦA BẠN
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyjCYNTDHXVfPkaeJCf7tBcMFiF6_DWH5T8tWfZAYvgT2T7vH4NoohgV7umSf14LdIO/exec";
+       // ✅ Dùng link MỚI bạn vừa triển khai
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRA3buBH933Ai2A-P4nqNFPO-eSy-gecyN4PN9IVZqGINIB30xn5AJS6F_D3U4d6EBHw/exec";
 
-        async function loadWishes() {
-            try {
-                const res = await fetch(GOOGLE_SCRIPT_URL, { 
-                    method: 'GET',
-                    cache: 'no-cache'
-                });
-                const data = await res.json();
-                renderWishes(data.wishes || []);
-            } catch (e) {
-                console.log("Lỗi tải:", e);
-                document.getElementById('wishesList').innerHTML = 
-                    '<p class="text-center text-amber-600 py-4">Vui lòng tải lại trang.</p>';
-            }
-        }
+async function loadWishes() {
+  try {
+    // Bỏ cache → luôn lấy mới nhưng dùng GET chuẩn
+    const res = await fetch(GOOGLE_SCRIPT_URL, { 
+      method: 'GET',
+      cache: 'no-store'
+    });
+    const data = await res.json();
+    renderWishes(data.wishes || []);
+  } catch (e) {
+    console.log("Lỗi tải:", e);
+    document.getElementById('wishesList').innerHTML = 
+      '<p class="text-center text-amber-600 py-4">Vui lòng tải lại trang.</p>';
+  }
+}
 
-        function renderWishes(wishes) {
-            const container = document.getElementById('wishesList');
-            if (!wishes || wishes.length === 0) {
-                container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên! ✨</p>';
-                return;
-            }
-            wishes.reverse();
-            container.innerHTML = wishes.map(w => `
-                <div class="wish-card bg-rose-50 rounded-xl shadow-sm p-5 border-l-4 border-primary/70 w-full">
-                    <p class="font-semibold text-primary mb-2">${escapeHtml(w.name || '')}</p>
-                    <p class="text-dark/80 whitespace-pre-wrap">${escapeHtml(w.message || '')}</p>
-                    <p class="text-xs text-dark/40 mt-2">${formatDate(w.createdAt || '')}</p>
-                </div>
-            `).join('');
-        }
-
-        document.getElementById('wishForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('wishName').value.trim();
-            const message = document.getElementById('wishMessage').value.trim();
-            const statusEl = document.getElementById('wishStatus');
-            
-            if (!name || !message) {
-                statusEl.textContent = "⚠️ Vui lòng điền đầy đủ thông tin!";
-                statusEl.className = "text-center text-sm text-red-500";
-                return;
-            }
-            
-            statusEl.textContent = "Đang gửi...";
-            statusEl.className = "text-center text-sm text-blue-500";
-            
-            try {
-                const formData = new FormData();
-                formData.append('name', name);
-                formData.append('message', message);
-                
-                const res = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const text = await res.text();
-                let result;
-                try {
-                    result = JSON.parse(text);
-                } catch {
-                    throw new Error("Kết nối thành công nhưng không nhận được phản hồi");
-                }
-                
-                if (result.success || result.wishes) {
-                    statusEl.textContent = "✅ Cảm ơn bạn! Đã lưu lời chúc.";
-                    statusEl.className = "text-center text-sm text-green-600";
-                    
-                    setTimeout(loadWishes, 600);
-                    
-                    document.getElementById('wishName').value = '';
-                    document.getElementById('wishMessage').value = '';
-                    
-                    setTimeout(() => { statusEl.textContent = ""; }, 4000);
-                } else {
-                    throw new Error(result.error || "Không lưu được");
-                }
-                
-            } catch (err) {
-                statusEl.textContent = "⚠️ " + err.message;
-                statusEl.className = "text-center text-sm text-red-500";
-                console.error(err);
-            }
-        });
+document.getElementById('wishForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('wishName').value.trim();
+  const message = document.getElementById('wishMessage').value.trim();
+  const statusEl = document.getElementById('wishStatus');
+  
+  if (!name || !message) {
+    statusEl.textContent = "⚠️ Vui lòng điền đầy đủ thông tin!";
+    statusEl.className = "text-center text-sm text-red-500";
+    return;
+  }
+  
+  statusEl.textContent = "Đang gửi...";
+  statusEl.className = "text-center text-sm text-blue-500";
+  
+  try {
+    // ✅ Dùng URLSearchParams thay FormData → nhanh hơn, tương thích tốt hơn
+    const params = new URLSearchParams();
+    params.append('name', name);
+    params.append('message', message);
+    
+    const res = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params,
+      // Bỏ no-cors → nhận phản hồi đúng dạng JSON
+      mode: 'cors'
+    });
+    
+    const result = await res.json();
+    
+    if (result.success || result.wishes) {
+      statusEl.textContent = "✅ Cảm ơn bạn! Đã lưu lời chúc.";
+      statusEl.className = "text-center text-sm text-green-600";
+      
+      renderWishes(result.wishes || []); // Dùng dữ liệu trả về ngay, không cần gọi lại
+      
+      document.getElementById('wishName').value = '';
+      document.getElementById('wishMessage').value = '';
+      
+      setTimeout(() => { statusEl.textContent = ""; }, 4000);
+    } else {
+      throw new Error(result.error || "Không lưu được");
+    }
+    
+  } catch (err) {
+    statusEl.textContent = "⚠️ " + err.message;
+    statusEl.className = "text-center text-sm text-red-500";
+    console.error(err);
+  }
+});
 
         function escapeHtml(text) {
             const div = document.createElement('div');
