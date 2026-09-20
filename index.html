@@ -342,7 +342,7 @@
     </footer>
 
     <script>
-        // === Đếm Ngày & Năm ===
+               // === Đếm Ngày & Năm ===
         const weddingDate = new Date(2021, 0, 1, 11, 0, 0);
 
         function updateCountdown() {
@@ -402,89 +402,93 @@
             }
         });
 
-      // 🔑 DÙNG LINK MỚI SAU KHI TRIỂN KHAI
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzF94XV7TvoGlsMTtjnLQ9-BtbehFiCJOPvbTGe0XUuiJYHaeSVpB-7Bpf0h3QMGeJ7/exec";
+        // 🔑 THAY LINK NÀY BẰNG LINK MỚI TỪ GOOGLE SCRIPT
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzF94XV7TvoGlsMTtjnLQ9-BtbehFiCJOPvbTGe0XUuiJYHaeSVpB-7Bpf0h3QMGeJ7/exec";
 
-// === Tải lời chúc ===
-async function loadWishes() {
-  try {
-    // Dùng fetch không chế độ đặc biệt — tự động phù hợp với Google
-    const res = await fetch(GOOGLE_SCRIPT_URL + "?t=" + Date.now(), {
-      method: 'GET'
-    });
-    
-    if (!res.ok) throw new Error("Phản hồi lỗi: " + res.status);
-    
-    const data = await res.json();
-    renderWishes(data.wishes || []);
-    
-  } catch (e) {
-    console.error("Lỗi tải:", e);
-    document.getElementById('wishesList').innerHTML = 
-      '<p class="text-center text-amber-600 py-4">Vui lòng tải lại trang.</p>';
-  }
-}
+        // === HIỂN THỊ DANH SÁCH LỜI CHÚC ===
+        function renderWishes(wishes) {
+            const container = document.getElementById('wishesList');
+            if (!wishes || wishes.length === 0) {
+                container.innerHTML = '<p class="text-center text-dark/50 py-4">Chưa có lời chúc nào, hãy là người đầu tiên! ✨</p>';
+                return;
+            }
+            wishes.reverse();
+            container.innerHTML = wishes.map(w => `
+                <div class="wish-card bg-rose-50 rounded-xl shadow-sm p-5 border-l-4 border-primary/70 w-full">
+                    <p class="font-semibold text-primary mb-2">${escapeHtml(w.name || '')}</p>
+                    <p class="text-dark/80 whitespace-pre-wrap">${escapeHtml(w.message || '')}</p>
+                    <p class="text-xs text-dark/40 mt-2">${formatDate(w.createdAt || '')}</p>
+                </div>
+            `).join('');
+        }
 
-// === Gửi lời chúc ===
-document.getElementById('wishForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const name = document.getElementById('wishName').value.trim();
-  const message = document.getElementById('wishMessage').value.trim();
-  const statusEl = document.getElementById('wishStatus');
-  
-  if (!name || !message) {
-    statusEl.textContent = "⚠️ Vui lòng điền đầy đủ thông tin!";
-    statusEl.className = "text-center text-sm text-red-500";
-    return;
-  }
-  
-  statusEl.textContent = "Đang gửi...";
-  statusEl.className = "text-center text-sm text-blue-500";
-  
-  try {
-    // ✅ Cách gửi chuẩn nhất cho Google Apps Script
-    const url = GOOGLE_SCRIPT_URL + 
-      "?name=" + encodeURIComponent(name) + 
-      "&message=" + encodeURIComponent(message);
-    
-    const res = await fetch(url, {
-      method: 'POST',
-      redirect: 'follow' // Quan trọng! Theo dõi chuyển hướng của Google
-    });
-    
-    if (!res.ok) throw new Error("Lỗi máy chủ: " + res.status);
-    
-    const text = await res.text();
-    let result;
-    try {
-      result = JSON.parse(text);
-    } catch {
-      throw new Error("Không đọc được phản hồi");
-    }
-    
-    if (result.success) {
-      statusEl.textContent = "✅ Cảm ơn bạn! Đã lưu lời chúc.";
-      statusEl.className = "text-center text-sm text-green-600";
-      
-      renderWishes(result.wishes || []);
-      
-      document.getElementById('wishName').value = '';
-      document.getElementById('wishMessage').value = '';
-      
-      setTimeout(() => { statusEl.textContent = ""; }, 4000);
-      
-    } else {
-      throw new Error(result.error || "Không lưu được");
-    }
-    
-  } catch (err) {
-    statusEl.textContent = "⚠️ " + err.message;
-    statusEl.className = "text-center text-sm text-red-500";
-    console.error(err);
-  }
-});
+        // === TẢI LỜI CHÚC TỪ SCRIPT ===
+        async function loadWishes() {
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_URL + "?t=" + Date.now(), { 
+                    method: 'GET',
+                    cache: 'no-store'
+                });
+                const data = await res.json();
+                renderWishes(data.wishes || []);
+            } catch (e) {
+                console.log("Lỗi tải:", e);
+                document.getElementById('wishesList').innerHTML = 
+                    '<p class="text-center text-amber-600 py-4">Vui lòng tải lại trang.</p>';
+            }
+        }
 
+        // === GỬI LỜI CHÚC ===
+        document.getElementById('wishForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('wishName').value.trim();
+            const message = document.getElementById('wishMessage').value.trim();
+            const statusEl = document.getElementById('wishStatus');
+            
+            if (!name || !message) {
+                statusEl.textContent = "⚠️ Vui lòng điền đầy đủ thông tin!";
+                statusEl.className = "text-center text-sm text-red-500";
+                return;
+            }
+            
+            statusEl.textContent = "Đang gửi...";
+            statusEl.className = "text-center text-sm text-blue-500";
+            
+            try {
+                const url = GOOGLE_SCRIPT_URL + 
+                    "?name=" + encodeURIComponent(name) + 
+                    "&message=" + encodeURIComponent(message);
+                
+                const res = await fetch(url, {
+                    method: 'POST',
+                    redirect: 'follow'
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    statusEl.textContent = "✅ Cảm ơn bạn! Đã lưu lời chúc.";
+                    statusEl.className = "text-center text-sm text-green-600";
+                    
+                    renderWishes(result.wishes || []);
+                    
+                    document.getElementById('wishName').value = '';
+                    document.getElementById('wishMessage').value = '';
+                    
+                    setTimeout(() => { statusEl.textContent = ""; }, 4000);
+                } else {
+                    throw new Error(result.error || "Không lưu được");
+                }
+                
+            } catch (err) {
+                statusEl.textContent = "⚠️ " + err.message;
+                statusEl.className = "text-center text-sm text-red-500";
+                console.error(err);
+            }
+        });
+
+        // === HÀM PHỤ TRỢ ===
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -497,7 +501,9 @@ document.getElementById('wishForm').addEventListener('submit', async function(e)
             return d.toLocaleString('vi-VN');
         }
 
+        // === BẮT ĐẦU TẢI LỜI CHÚC KHI TRANG MỞ ===
         loadWishes();
+    </script>
     </script>
 </body>
 </html>
