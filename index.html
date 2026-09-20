@@ -402,25 +402,30 @@
             }
         });
 
-       // ✅ Dùng link MỚI bạn vừa triển khai
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRA3buBH933Ai2A-P4nqNFPO-eSy-gecyN4PN9IVZqGINIB30xn5AJS6F_D3U4d6EBHw/exec";
+      // 🔑 DÙNG LINK MỚI SAU KHI TRIỂN KHAI
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw2dmFZ1A_0oa5sfOwjWpJ1FASOqK2oVRykg_hDikh3m_RQ1RP0jmX2rJbwDaX4NPaaQ/exec";
 
+// === Tải lời chúc ===
 async function loadWishes() {
   try {
-    // Bỏ cache → luôn lấy mới nhưng dùng GET chuẩn
-    const res = await fetch(GOOGLE_SCRIPT_URL, { 
-      method: 'GET',
-      cache: 'no-store'
+    // Dùng fetch không chế độ đặc biệt — tự động phù hợp với Google
+    const res = await fetch(GOOGLE_SCRIPT_URL + "?t=" + Date.now(), {
+      method: 'GET'
     });
+    
+    if (!res.ok) throw new Error("Phản hồi lỗi: " + res.status);
+    
     const data = await res.json();
     renderWishes(data.wishes || []);
+    
   } catch (e) {
-    console.log("Lỗi tải:", e);
+    console.error("Lỗi tải:", e);
     document.getElementById('wishesList').innerHTML = 
       '<p class="text-center text-amber-600 py-4">Vui lòng tải lại trang.</p>';
   }
 }
 
+// === Gửi lời chúc ===
 document.getElementById('wishForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   
@@ -438,33 +443,37 @@ document.getElementById('wishForm').addEventListener('submit', async function(e)
   statusEl.className = "text-center text-sm text-blue-500";
   
   try {
-    // ✅ Dùng URLSearchParams thay FormData → nhanh hơn, tương thích tốt hơn
-    const params = new URLSearchParams();
-    params.append('name', name);
-    params.append('message', message);
+    // ✅ Cách gửi chuẩn nhất cho Google Apps Script
+    const url = GOOGLE_SCRIPT_URL + 
+      "?name=" + encodeURIComponent(name) + 
+      "&message=" + encodeURIComponent(message);
     
-    const res = await fetch(GOOGLE_SCRIPT_URL, {
+    const res = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: params,
-      // Bỏ no-cors → nhận phản hồi đúng dạng JSON
-      mode: 'cors'
+      redirect: 'follow' // Quan trọng! Theo dõi chuyển hướng của Google
     });
     
-    const result = await res.json();
+    if (!res.ok) throw new Error("Lỗi máy chủ: " + res.status);
     
-    if (result.success || result.wishes) {
+    const text = await res.text();
+    let result;
+    try {
+      result = JSON.parse(text);
+    } catch {
+      throw new Error("Không đọc được phản hồi");
+    }
+    
+    if (result.success) {
       statusEl.textContent = "✅ Cảm ơn bạn! Đã lưu lời chúc.";
       statusEl.className = "text-center text-sm text-green-600";
       
-      renderWishes(result.wishes || []); // Dùng dữ liệu trả về ngay, không cần gọi lại
+      renderWishes(result.wishes || []);
       
       document.getElementById('wishName').value = '';
       document.getElementById('wishMessage').value = '';
       
       setTimeout(() => { statusEl.textContent = ""; }, 4000);
+      
     } else {
       throw new Error(result.error || "Không lưu được");
     }
